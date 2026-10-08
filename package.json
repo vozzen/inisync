@@ -1,6 +1,6 @@
 {
   "name": "@vozzen/inisync",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A tool to watch incoming INI files and sync(merge) them on top of a target INI file.",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
