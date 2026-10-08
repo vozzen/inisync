@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "semanticCommits": "enabled",
+  "minimumReleaseAge": "7 days",
+  "platformAutomerge": false,
+  "packageRules": [
+    {
+      "description": "Auto-merge minor and patch updates once the Test checks pass. Major updates wait for review.",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "Group dev dependency minor/patch updates into one PR.",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "dev dependencies"
+    },
+    {
+      "description": "Dev dependency and GitHub Actions updates must not publish a new npm version (see .releaserc).",
+      "matchDepTypes": ["devDependencies"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "no-release"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "no-release"
+    }
+  ]
+}
