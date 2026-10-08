@@ -49,6 +49,10 @@ const patternToWatch = path.join(
 
 const watcher = chokidar.watch(patternToWatch, {ignoreInitial: true});
 
+watcher.on('ready', () => {
+  log.info(`Watching for new files matching: ${patternToWatch}`);
+});
+
 watcher.on('add', path => {
   log.info(
     `A new matching file has been detected at path: ${path}. Syncing...`,
