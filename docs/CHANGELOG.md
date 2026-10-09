@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/vozzen/inisync/compare/v1.2.5...v1.2.6) (2026-10-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commander to v15 ([78689fb](https://github.com/vozzen/inisync/commit/78689fb0049baf3f0722cf26a7e2b544a45798d7))
+
 ## [1.2.5](https://github.com/vozzen/inisync/compare/v1.2.4...v1.2.5) (2026-10-09)
 
 
