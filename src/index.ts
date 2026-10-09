@@ -4,6 +4,7 @@ import * as chokidar from 'chokidar';
 import log from './log';
 import {defaultConfig, Config} from './config';
 import {syncIniFiles} from './ini-sync';
+import {createWatchSpec} from './watch-pattern';
 import path = require('path');
 import {program} from 'commander';
 
@@ -47,7 +48,14 @@ const patternToWatch = path.join(
   applicationConfig.watchPattern,
 );
 
-const watcher = chokidar.watch(patternToWatch, {ignoreInitial: true});
+// chokidar 4+ dropped glob support, so watch the pattern's directory and
+// filter files ourselves.
+const watchSpec = createWatchSpec(patternToWatch);
+const watcher = chokidar.watch(watchSpec.target, {
+  ignoreInitial: true,
+  depth: watchSpec.depth,
+  ignored: watchSpec.ignored,
+});
 
 watcher.on('ready', () => {
   log.info(`Watching for new files matching: ${patternToWatch}`);

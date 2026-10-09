@@ -18,14 +18,11 @@ describe('CLI end-to-end workflow', () => {
   let targetPath: string;
   let cli: RunningCli | undefined;
 
-  const start = async (extraArgs: string[] = []) => {
-    cli = startCli([
-      '--watch',
-      path.join(dir, 'aws_sts*.txt'),
-      '--target',
-      targetPath,
-      ...extraArgs,
-    ]);
+  const start = async (
+    extraArgs: string[] = [],
+    pattern = path.join(dir, 'aws_sts*.txt'),
+  ) => {
+    cli = startCli(['--watch', pattern, '--target', targetPath, ...extraArgs]);
     await cli.waitForOutput(READY_MESSAGE);
   };
 
@@ -105,6 +102,48 @@ describe('CLI end-to-end workflow', () => {
     expect(parse(fs.readFileSync(targetPath, 'utf-8'))).toEqual({
       default: {key: 'old'},
       marker: {key: '1'},
+    });
+  }, 20_000);
+
+  test('matches nested files with a ** pattern', async () => {
+    await start([], path.join(dir, '**', 'aws_sts*.txt'));
+
+    const nested = path.join(dir, 'a', 'b');
+    fs.mkdirSync(nested, {recursive: true});
+    // Give the watcher time to notice the new directories before the file.
+    await new Promise(resolve => setTimeout(resolve, 500));
+    fs.writeFileSync(path.join(nested, 'aws_sts.txt'), '[nested]\nkey=1\n');
+
+    await cli!.waitForOutput('Syncing complete.');
+    expect(parse(fs.readFileSync(targetPath, 'utf-8'))).toEqual({
+      nested: {key: '1'},
+    });
+  }, 20_000);
+
+  test('does not look in subdirectories for a flat pattern', async () => {
+    fs.mkdirSync(path.join(dir, 'sub'));
+    await start();
+
+    const deep = path.join(dir, 'sub', 'aws_sts.txt');
+    fs.writeFileSync(deep, '[deep]\nkey=1\n');
+    // Then drop a matching top-level file so we know events were processed.
+    fs.writeFileSync(path.join(dir, 'aws_sts.txt'), '[top]\nkey=1\n');
+
+    await cli!.waitForOutput('Syncing complete.');
+    expect(fs.existsSync(deep)).toBe(true);
+    expect(parse(fs.readFileSync(targetPath, 'utf-8'))).toEqual({
+      top: {key: '1'},
+    });
+  }, 20_000);
+
+  test('watches a literal file path that does not exist yet', async () => {
+    await start([], path.join(dir, 'incoming.txt'));
+
+    fs.writeFileSync(path.join(dir, 'incoming.txt'), '[lit]\nkey=1\n');
+
+    await cli!.waitForOutput('Syncing complete.');
+    expect(parse(fs.readFileSync(targetPath, 'utf-8'))).toEqual({
+      lit: {key: '1'},
     });
   }, 20_000);
 });
