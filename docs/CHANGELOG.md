@@ -1,3 +1,11 @@
+## [1.2.7](https://github.com/vozzen/inisync/compare/v1.2.6...v1.2.7) (2026-10-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency chokidar to v5 ([6bf888b](https://github.com/vozzen/inisync/commit/6bf888bd2f5b82ceefa1c2a855609d25c869d7a2))
+* keep glob watch patterns working with chokidar 5 ([b3c9ca4](https://github.com/vozzen/inisync/commit/b3c9ca4f4b0cfec42248dd0700db7df500f2d996))
+
 ## [1.2.6](https://github.com/vozzen/inisync/compare/v1.2.5...v1.2.6) (2026-10-09)
 
 
