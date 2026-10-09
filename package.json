@@ -36,7 +36,7 @@
     "@semantic-release/release-notes-generator": "^14.0.1",
     "@types/ini": "^4.1.1",
     "@types/node": "^22.7.5",
-    "gts": "^6.0.2",
+    "gts": "^7.0.0",
     "jest": "^30.0.0",
     "semantic-release": "^25.0.9",
     "ts-jest": "^29.2.5",
