@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/vozzen/inisync/compare/v1.2.3...v1.2.4) (2026-10-09)
+
+
+### Bug Fixes
+
+* declare Node 22 as the minimum supported version ([af37526](https://github.com/vozzen/inisync/commit/af37526b12a4714a9c3a0c3fe5939038450295b5))
+
 ## [1.2.3](https://github.com/vozzen/inisync/compare/v1.2.2...v1.2.3) (2026-10-08)
 
 ## [1.2.2](https://github.com/vozzen/inisync/compare/v1.2.1...v1.2.2) (2026-10-08)
