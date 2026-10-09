@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/vozzen/inisync/compare/v1.2.4...v1.2.5) (2026-10-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ini to v7 ([f875241](https://github.com/vozzen/inisync/commit/f8752411095927220379535e8e27462a561cbcab))
+
 ## [1.2.4](https://github.com/vozzen/inisync/compare/v1.2.3...v1.2.4) (2026-10-09)
 
 
