@@ -8,7 +8,7 @@
     "build/src"
   ],
   "engines": {
-    "node": ">=14.14.0"
+    "node": ">=22"
   },
   "license": "MIT",
   "keywords": [

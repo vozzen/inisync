@@ -29,6 +29,12 @@
       "semanticCommitScope": "no-release"
     },
     {
+      "description": "@types/node must match the minimum supported Node version (engines in package.json), so never propose major bumps.",
+      "matchPackageNames": ["@types/node"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "description": "Lockfile-only updates (the version stays within the range in package.json) change nothing users install, so they must not publish a new npm version (see .releaserc).",
       "matchJsonata": ["isLockfileUpdate = true"],
       "semanticCommitType": "chore",
