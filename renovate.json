@@ -27,6 +27,12 @@
       "groupName": "github actions",
       "semanticCommitType": "chore",
       "semanticCommitScope": "no-release"
+    },
+    {
+      "description": "Lockfile-only updates (the version stays within the range in package.json) change nothing users install, so they must not publish a new npm version (see .releaserc).",
+      "matchJsonata": ["isLockfileUpdate = true"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "no-release"
     }
   ]
 }
