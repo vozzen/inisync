@@ -39,7 +39,7 @@
     "@types/picomatch": "^4.0.3",
     "gts": "^7.0.0",
     "jest": "^30.0.0",
-    "semantic-release": "^25.0.9",
+    "semantic-release": "^26.0.0",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.3"
   },
